@@ -1,6 +1,6 @@
 APP?=app
 PORT?=8080
-PROJECT?=github.com/go_kubernetes
+PROJECT?=go_kubernetes
 RELEASE?=$(shell git describe --abbrev=0 --tags)
 COMMIT?=$(shell git rev-parse --short HEAD)
 BUILD_TIME?=$(shell date -u '+%Y-%m-%d_%H:%M:%S')
