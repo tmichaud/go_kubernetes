@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	log.Printf("Starting the service...\ncommit: %s, bulid time: %s, release: %s\n", version.Commit, version.BuildTime, version.Release)
+	log.Printf("Starting the service...\ncommit: %s, build time: %s, release: %s\n", version.Commit, version.BuildTime, version.Release)
 	port := os.Getenv("PORT")
 	if port == "" {
 		log.Fatal("Port is not set")
