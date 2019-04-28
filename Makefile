@@ -20,6 +20,7 @@ build: clean
 
 
 container: build
+	docker rmi $(APP):$(RELEASE) || true
 	docker build -t $(APP):$(RELEASE) . 
 
 run: container
