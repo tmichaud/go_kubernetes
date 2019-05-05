@@ -1,4 +1,4 @@
-APP?=app
+APP?=kapp
 PORT?=8080
 PROJECT?=go_kubernetes
 RELEASE?=$(shell git describe --abbrev=0 --tags)
@@ -6,6 +6,7 @@ COMMIT?=$(shell git rev-parse --short HEAD)
 BUILD_TIME?=$(shell date -u '+%Y-%m-%d_%H:%M:%S')
 GOOS?=linux
 GOARCH?=amd64
+CONTAINER_IMAGE?=docker.io/tmichaud/$(APP)
 
 clean:
 		rm -rf ${APP}
@@ -21,7 +22,10 @@ build: clean
 
 container: build
 	docker rmi $(APP):$(RELEASE) || true
-	docker build -t $(APP):$(RELEASE) . 
+	docker build -t tmichaud/$(APP):$(RELEASE) . 
+
+push: container
+	docker push $(CONTAINER_IMAGE):$(RELEASE)
 
 run: container
 	docker stop $(APP):$(RELEASE) || true && docker rm $(APP):$(RELEASE) || true
