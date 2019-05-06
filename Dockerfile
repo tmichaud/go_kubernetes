@@ -4,4 +4,4 @@ ENV PORT 8080
 EXPOSE $PORT
 USER 65534:65534
 COPY --chown=65534:65534 kapp / 
-CMD ["/app"]
+CMD ["/kapp"]
