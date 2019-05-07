@@ -63,8 +63,9 @@ run: container
 #	kubectl apply -f tmp.yaml
 
 minikube3:
-	kubectl apply -f t.i.yaml2 --validate=false
 	kubectl apply -f t.d.yaml2 --validate=false
+	kubectl apply -f t.s.yaml2 --validate=false
+	kubectl apply -f t.i.yaml2 --validate=false
 
 test:
 	go test -v -race ./...
