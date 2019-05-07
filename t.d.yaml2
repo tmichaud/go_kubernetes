@@ -1,0 +1,40 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name:  kapp 
+  labels:
+    app: kapp 
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    maxUnavailable: 50%
+    maxSurge: 1
+  template:
+    metadata: 
+      labels:
+        app:  kapp 
+    spec:
+      containers:
+      - name:  kapp 
+        image: docker.io/tmichaud/kapp:0.0.2
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+        livenessProbe: 
+          httpGet:
+            path: /healthz
+            port: 8000
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 8000
+        resources: 
+          limits:
+            cpu: 10m
+            memory: 30Mi
+          requests:
+            cpu: 10m
+            memory: 30Mi
+        terminationGracePeriodSeconds: 30 
+              
