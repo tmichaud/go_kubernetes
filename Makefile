@@ -36,31 +36,31 @@ run: container
 
 #minikube: push
 
-minikube: 
-	cat ingress.yaml | \
-	    sed -E "s/\{\{(\s*)\.Release(\s*)\}\}/$(RELEASE)/g" | \
-	    sed -E "s/\{\{(\s*)\.ServiceName(\s*)\}\}/$(APP)/g" ; \
-	  echo ---; \
-	done > t.i.yaml
-	cat t.i.yaml
-	kubectl apply -f t.i.yaml
-	cat deployment.yaml | \
-	    sed -E "s/\{\{(\s*)\.Release(\s*)\}\}/$(RELEASE)/g" | \
-	    sed -E "s/\{\{(\s*)\.ServiceName(\s*)\}\}/$(APP)/g" ; \
-	  echo ---; \
-	done > t.d.yaml
-	cat t.d.yaml
-	kubectl apply -f t.d.yaml
-
-minikube2:
-	for t in $(shell find ./kubernetes/advent -type f -name "*.yaml"); do \
-        cat $$t | \
-        	sed -E "s/\{\{(\s*)\.Release(\s*)\}\}/$(RELEASE)/g" | \
-        	sed -E "s/\{\{(\s*)\.ServiceName(\s*)\}\}/$(APP)/g"; \
-        echo ---; \
-    done > tmp.yaml
-	cat tmp.yaml
-	kubectl apply -f tmp.yaml
+#minikube: 
+#	cat ingress.yaml | \
+#	    sed -E "s/\{\{(\s*)\.Release(\s*)\}\}/$(RELEASE)/g" | \
+#	    sed -E "s/\{\{(\s*)\.ServiceName(\s*)\}\}/$(APP)/g" ; \
+#	  echo ---; \
+#	done > t.i.yaml
+#	cat t.i.yaml
+#	kubectl apply -f t.i.yaml
+#	cat deployment.yaml | \
+#	    sed -E "s/\{\{(\s*)\.Release(\s*)\}\}/$(RELEASE)/g" | \
+#	    sed -E "s/\{\{(\s*)\.ServiceName(\s*)\}\}/$(APP)/g" ; \
+#	  echo ---; \
+#	done > t.d.yaml
+#	cat t.d.yaml
+#	kubectl apply -f t.d.yaml
+#
+#minikube2:
+#	for t in $(shell find ./kubernetes/advent -type f -name "*.yaml"); do \
+#        cat $$t | \
+#        	sed -E "s/\{\{(\s*)\.Release(\s*)\}\}/$(RELEASE)/g" | \
+#        	sed -E "s/\{\{(\s*)\.ServiceName(\s*)\}\}/$(APP)/g"; \
+#        echo ---; \
+#    done > tmp.yaml
+#	cat tmp.yaml
+#	kubectl apply -f tmp.yaml
 
 minikube3:
 	kubectl apply -f t.i.yaml2 --validate=false

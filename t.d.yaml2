@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name:  kapp 
-        image: docker.io/tmichaud/kapp:0.0.2
+        image: docker.io/tmichaud/kapp:0.0.3
         imagePullPolicy: Always
         ports:
         - containerPort: 8000
