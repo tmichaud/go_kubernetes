@@ -29,7 +29,7 @@ container: build
 push: container
 	docker push $(CONTAINER_IMAGE):$(RELEASE)
 
-run: container
+run: 
 	docker stop $(APP):$(RELEASE) || true && docker rm $(APP):$(RELEASE) || true
 	docker run --name ${APP} -p ${PORT}:${PORT} --rm -e "PORT=${PORT}" tmichaud/$(APP):$(RELEASE)
 	#PORT=${PORT} ./${APP}
@@ -63,9 +63,9 @@ run: container
 #	kubectl apply -f tmp.yaml
 
 minikube3:
-	kubectl apply -f t.d.yaml2 --validate=false
-	kubectl apply -f t.s.yaml2 --validate=false
-	kubectl apply -f t.i.yaml2 --validate=false
+	kubectl apply -f t.d.yaml2 #--validate=false
+	kubectl apply -f t.s.yaml2 #--validate=false
+	kubectl apply -f t.i.yaml2 #--validate=false
 
 test:
 	go test -v -race ./...
