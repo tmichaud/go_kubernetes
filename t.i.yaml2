@@ -2,7 +2,17 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: kapp-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /home
 spec:
-  backend:
-    serviceName: kapp
-    servicePort: 80
+  rules:
+  - host: advert.test
+    http:
+      paths:
+      - path: /home
+        backend: 
+          serviceName: kapp
+          servicePort: 80
+#  backend:
+#    serviceName: kapp
+#    servicePort: 80
