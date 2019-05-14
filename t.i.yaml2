@@ -3,13 +3,13 @@ kind: Ingress
 metadata:
   name: kapp-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /home
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - host: advert.test
     http:
       paths:
-      - path: /home
+      - path: /
         backend: 
           serviceName: kapp
           servicePort: 80
